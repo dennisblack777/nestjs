@@ -30,8 +30,10 @@ export class UsersService {
       .pipe(map((response) => response.data));
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  update(id: number, updateUserDto: UpdateUserDto): Observable<AxiosResponse> {
+    return this.httpService
+      .put(`${this.api}/users/${id}`, updateUserDto)
+      .pipe(map((response) => response.data));
   }
 
   remove(id: number): Observable<AxiosResponse> {
